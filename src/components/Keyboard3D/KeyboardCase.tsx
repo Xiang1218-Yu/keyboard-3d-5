@@ -49,7 +49,12 @@ export function KeyboardCase() {
         />
       </mesh>
 
-      <mesh position={[0, -0.5, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
+      <mesh
+        position={[0, -0.5, 0]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        receiveShadow
+        userData={{ isEnvironment: true }}
+      >
         <planeGeometry args={[caseWidth + 8, caseDepth + 8]} />
         <meshStandardMaterial
           color="#0a0a0f"

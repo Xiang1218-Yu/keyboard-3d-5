@@ -5,6 +5,7 @@ import { EffectComposer, Bloom } from '@react-three/postprocessing';
 import { Lights } from './Lights';
 import { KeyboardCase } from './KeyboardCase';
 import { KeyCap } from './KeyCap';
+import { ExportController } from './ExportController';
 import { useLayout } from '@/store/useKeyboardStore';
 import { LAYOUT_CONFIGS } from '@/data/layouts';
 import { KeyZone } from '@/types/keyboard';
@@ -82,6 +83,8 @@ export function KeyboardScene({ selectedZone }: KeyboardSceneProps) {
           intensity={0.5}
         />
       </EffectComposer>
+
+      <ExportController />
     </Canvas>
   );
 }
