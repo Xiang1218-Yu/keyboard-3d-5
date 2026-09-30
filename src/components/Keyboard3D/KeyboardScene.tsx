@@ -1,10 +1,12 @@
 import { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, Environment } from '@react-three/drei';
+import { OrbitControls } from '@react-three/drei';
 import { EffectComposer, Bloom } from '@react-three/postprocessing';
 import { Lights } from './Lights';
 import { KeyboardCase } from './KeyboardCase';
 import { KeyCap } from './KeyCap';
+import { ExportBridge } from './ExportBridge';
+import { registerComposer } from '@/lib/exporter';
 import { useLayout } from '@/store/useKeyboardStore';
 import { LAYOUT_CONFIGS } from '@/data/layouts';
 import { KeyZone } from '@/types/keyboard';
@@ -54,12 +56,13 @@ export function KeyboardScene({ selectedZone }: KeyboardSceneProps) {
     <Canvas
       shadows
       camera={{ position: [0, 18, 22], fov: 45 }}
-      gl={{ antialias: true, alpha: false }}
+      gl={{ antialias: true, alpha: true }}
       dpr={[1, 2]}
     >
       <color attach="background" args={['#0a0a0f']} />
       <fog attach="fog" args={['#0a0a0f', 15, 35]} />
-      
+
+      <ExportBridge />
       <Lights />
       <KeyboardContent selectedZone={selectedZone} />
       
@@ -74,7 +77,7 @@ export function KeyboardScene({ selectedZone }: KeyboardSceneProps) {
         target={[0, 0, 0]}
       />
       
-      <EffectComposer>
+      <EffectComposer ref={registerComposer}>
         <Bloom
           luminanceThreshold={0.2}
           luminanceSmoothing={0.9}

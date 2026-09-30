@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { KeyboardScene } from '@/components/Keyboard3D/KeyboardScene';
 import { ControlPanel } from '@/components/ControlPanel/ControlPanel';
+import { ExportPanel } from '@/components/Export/ExportPanel';
 import { useKeyboardPress } from '@/hooks/useKeyboardPress';
 import { KeyZone } from '@/types/keyboard';
 
@@ -28,7 +29,9 @@ export default function Home() {
           </div>
           <KeyboardScene selectedZone={selectedZone} />
         </div>
-        
+
+        <ExportPanel />
+
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20">
           <div className="px-6 py-3 bg-gray-900/60 backdrop-blur-xl rounded-full border border-gray-700/30">
             <p className="text-sm text-gray-300 flex items-center gap-2">
